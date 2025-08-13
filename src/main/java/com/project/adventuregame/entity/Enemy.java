@@ -29,7 +29,9 @@ public class Enemy {
         MAGICAL,
         HUMAN,
         UNDEAD,
-        BEAST
+        BEAST,
+        GODLY,
+        DEMONIC
     }
 
     public Enemy(String name, Long locationId, Long difficulty, Long dropChance, EnemyType type) {
