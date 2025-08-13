@@ -73,7 +73,7 @@ public class LocationService {
 
     }
 
-    public int getDestinationLocationId(long currentLocationId, String direction) {
+    public long getDestinationLocationId(long currentLocationId, String direction) {
         return  exitRepository.findBySourceLocationId(currentLocationId)
                 .stream()
                 .filter(exit -> exit.getDirection().equals(direction))

@@ -29,7 +29,7 @@ public class ItemService {
     public void initializeItems() {
         if(itemRepository.findAll().isEmpty()) {
             Location cave = locationService.getLocationById(2L).orElseThrow();
-            Item coin = new Item("Coin","COIN","A gold coin", null, cave.getLocationId());
+            Item coin = new Item("Coin", Item.ItemType.COIN,null,"a gold coin", null, cave.getLocationId());
             itemRepository.save(coin);
         }
     }
@@ -75,19 +75,19 @@ public class ItemService {
             return "You must be in the shop to buy items";
         }
 
-        if(inventory.stream().noneMatch(item -> item.getType().equals("COIN"))){
+        if(inventory.stream().noneMatch(item -> item.getType().equals(Item.ItemType.COIN))){
             return "Need a coin to buy light";
         }
 
 
         Item coin = inventory
                 .stream()
-                .filter(item -> item.getType().equals("COIN"))
+                .filter(item -> item.getType().equals(Item.ItemType.COIN))
                 .findFirst()
                 .orElseThrow();
 
         itemRepository.delete(coin);
-        Item light = new Item("Light","LIGHT_SOURCE","A small glowing light", playerId, null);
+        Item light = new Item("Light", Item.ItemType.LIGHT_SOURCE,null,"A small source of light", playerId, null);
         itemRepository.save(light);
         return "Successfully bought " + light.getName();
 

@@ -18,11 +18,11 @@ public class Exit {
     @Id
     @GeneratedValue
     private long id;
-    private int sourceLocationId;
+    private long sourceLocationId;
     private String direction;
-    private int destinationLocationId;
+    private long destinationLocationId;
 
-    public Exit(int sourceLocationId, String direction, int destinationLocationId) {
+    public Exit(long sourceLocationId, String direction, long destinationLocationId) {
         this.sourceLocationId = sourceLocationId;
         this.direction = direction;
         this.destinationLocationId = destinationLocationId;

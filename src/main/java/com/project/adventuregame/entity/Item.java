@@ -1,9 +1,6 @@
 package com.project.adventuregame.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,14 +17,38 @@ public class Item {
     @GeneratedValue
     private long id;
     private String name;
-    private String type;
+
+    @Enumerated(EnumType.STRING)
+    private ItemType type;
+
+    @Enumerated(EnumType.STRING)
+    private WeaponType weaponType;
+
     private String description;
     private Long playerId;
     private Long locationId;
 
-    public Item(String name, String type, String description, Long playerId, Long locationId) {
+    public enum ItemType {
+        LIGHT_SOURCE,
+        COIN,
+        WEAPON
+    }
+
+    public enum WeaponType {
+        SWORD,
+        AXE,
+        MACE,
+        HOLY,
+        FIRE,
+        ICE,
+        MAGIC,
+        RANGED
+    }
+
+    public Item(String name, ItemType type, WeaponType weaponType, String description, Long playerId, Long locationId) {
         this.name = name;
         this.type = type;
+        this.weaponType = weaponType;
         this.description = description;
         this.playerId = playerId;
         this.locationId = locationId;
